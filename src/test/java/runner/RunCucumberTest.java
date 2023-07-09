@@ -15,6 +15,4 @@ import org.junit.runner.RunWith;
 )
 
 public class RunCucumberTest {
-//,
-//    features = {"src/test/resources"}
 }

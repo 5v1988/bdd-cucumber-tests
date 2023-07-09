@@ -1,10 +1,8 @@
 package glue;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import javax.inject.Inject;
 import pages.AddToCartPage;
-import pages.HomePage;
 
 public class AddToCardSteps {
 

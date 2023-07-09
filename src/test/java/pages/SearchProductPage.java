@@ -29,7 +29,6 @@ public class SearchProductPage extends BasePage {
   private List<WebElement> productElements;
 
   public List<String> getAllProductName() {
-   // waitUntil(productElements, DEFAULT_TIME_OUT);
     List<String> products = productElements.stream().map(WebElement::getText)
         .collect(Collectors.toList());
     return products;

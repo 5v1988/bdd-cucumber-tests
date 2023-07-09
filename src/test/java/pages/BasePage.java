@@ -1,13 +1,8 @@
 package pages;
-import com.github.javafaker.Faker;
-import javax.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class BasePage extends PageUtility{
-
-  @Inject
-  Faker faker;
 
   WebDriver driver;
   private final static String ALERT_ELEMENT_XPATH = "//div[@role='alert'][.//div[contains(normalize-space(),'%s')]]";
