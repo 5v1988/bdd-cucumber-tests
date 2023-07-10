@@ -37,7 +37,8 @@ public abstract class PageUtility {
 
   boolean waitUntil(List<WebElement> elements) {
     WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIME_OUT);
-    return wait.until((driver) -> elements.size() > 0);
+    return wait.until(ExpectedConditions.visibilityOfAllElements(elements))
+        .size() > 0;
   }
 
   boolean waitUntil(List<WebElement> elements, Duration timeOut) {

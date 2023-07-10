@@ -35,7 +35,7 @@ public class ShippingSteps {
       List<Map<String, String>> list) {
     Address address = faker.address();
     String phoneNumber = faker.phoneNumber().phoneNumber();
-    Map<String, String> shippingAddressInfo =  new HashMap<>(list.get(0));
+    Map<String, String> shippingAddressInfo = new HashMap<>(list.get(0));
     shippingAddressInfo.put("street1", Optional.ofNullable(shippingAddressInfo.get("street1"))
         .orElse(address.streetAddress()));
     shippingAddressInfo.put("city", Optional.ofNullable(shippingAddressInfo.get("city"))
@@ -46,8 +46,9 @@ public class ShippingSteps {
         .orElse(address.zipCode()));
     shippingAddressInfo.put("country", Optional.ofNullable(shippingAddressInfo.get("country"))
         .orElse(address.country()));
-    shippingAddressInfo.put("phoneNumber", Optional.ofNullable(shippingAddressInfo.get("phoneNumber"))
-        .orElse(phoneNumber));
+    shippingAddressInfo.put("phoneNumber",
+        Optional.ofNullable(shippingAddressInfo.get("phoneNumber"))
+            .orElse(phoneNumber));
     shippingPage.enterShippingAddress(shippingAddressInfo);
   }
 

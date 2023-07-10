@@ -2,8 +2,10 @@ package glue;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import java.util.Map;
 import javax.inject.Inject;
 import model.TestConfig;
+import model.TestContext;
 import pages.HomePage;
 
 public class HomeSteps {
@@ -13,6 +15,9 @@ public class HomeSteps {
 
   @Inject
   private TestConfig testConfig;
+
+  @Inject
+  private TestContext<String, Object> testContext;
 
   @Given("User opens home page: url")
   public void userOpensHomePage() {

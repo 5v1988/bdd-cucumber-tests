@@ -1,17 +1,22 @@
 package glue;
 
+import com.google.inject.Inject;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import org.openqa.selenium.WebDriver;
 
 public class BaseSteps {
 
+  @Inject
+  WebDriver driver;
+
   @Before
-  public void beforeTests() {
+  public void beforeTest() {
   }
 
   @After
-  public void afterTests(Scenario scenario) {
+  public void afterTest() {
+    driver.quit();
   }
 
   

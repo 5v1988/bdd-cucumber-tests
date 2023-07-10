@@ -39,6 +39,7 @@ public class AddToCartPage extends BasePage {
   }
 
   public void proceedCheckout(){
+    waitUntil(cartCounter);
     cartCounter.click();
     waitUntil(proceedToCheckout);
     proceedToCheckout.click();

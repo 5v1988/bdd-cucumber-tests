@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.Map;
 import java.util.Optional;
+import model.TestContext;
 import org.assertj.core.api.Assertions;
 import pages.CreateNewAccountPage;
 
@@ -16,6 +17,9 @@ public class CreateAccountSteps {
 
   @Inject
   private Faker faker;
+
+  @Inject
+  private TestContext<String, Object> textContext;
 
   @When("User enters personal info: {string} and {string}")
   public void userEntersPersonalInfoAnd(String firstName, String lastName) {

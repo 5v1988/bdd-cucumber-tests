@@ -1,4 +1,4 @@
-@PlaceOrder
+@Smoke @PlaceOrder
 Feature: Search products and place an order
 
   Scenario Outline: Search product and place an order

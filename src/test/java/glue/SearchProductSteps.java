@@ -25,7 +25,8 @@ public class SearchProductSteps {
   public void userVerifiesThatTheProductDisplaysInTheResults(String productName) {
     searchProductPage.pause(Duration.ofSeconds(5));
     List<String> products = searchProductPage.getAllProductName();
-    Assertions.assertThat(products).as(String.format("Assert that the product %s displays", productName))
+    Assertions.assertThat(products)
+        .as(String.format("Assert that the product %s displays", productName))
         .contains(productName);
   }
 
