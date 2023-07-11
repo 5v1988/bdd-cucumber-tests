@@ -1,12 +1,15 @@
-# bdd-cucumber-tests
+# bdd cucumber tests workshop
 
 **Introduction**
 
 This workshop intends to provide guidance on building test automation framework, mainly using Guice,
-a dependency injection framework.It should take from 1 to 2 hours, depending on how deep you want to
+a dependency injection framework from Google. It should take from 1 to 2 hours, depending on how deep you want to
 go into each topic.
 
 **Set-up Outline**
+
+- [Step 0: **Define scenarios to be automated in Gherkin**](#step-0-define-scenarios-to-be-automated-in-bdd-format) : Create a couple of scenarios that
+  are used to explain the concepts.
 
 - [Step 1: **Set up a module & injector source**](#step-1-create-a-custom-module-and-an-injector-source) : Create a custom module and injector classes that 
 provide and inject objects where required respectively.
@@ -23,10 +26,10 @@ provide and inject objects where required respectively.
 - [Step 5: **Add a method to provide a WebDriver instance**](#step-5-create-a-provider-that-returns-a-webdriver) : Add a method that provides a webdriver
   instance for the given browser type
 
-- [Step 6: **Add page class and inject WebDriver instance**] : Create a page class by injecting 
+- [Step 6: **Add page class and inject WebDriver instance**](#step-6-create-pages-with-required-elements-and-methods) : Create a page class by injecting 
   driver instance with a PageFactory design pattern
 
-- [Step 7: **Create step definition class and inject required dependencies**] : Define steps in the 
+- [Step 7: **Create step definition class and inject required dependencies**](#step-7-define-glue-codes-for-the-steps-in-feature-files) : Define steps in the 
   glue codes, and inject all required dependencies
 
 **Requirements**
@@ -42,6 +45,33 @@ provide and inject objects where required respectively.
 The following are two scenarios that we automate, mainly to understand the aforementioned steps
 - Create a new account
 - Search products and place an order
+
+#Step 0: Define scenarios to be automated in bdd format
+Let's begin by writing steps for above two scenarios in Gherkin format. We need them as we use these
+to learn the concepts required in building a robust and scalable automation framework. For instance,
+the following steps are to be created for the first scenario: `Create a new account` in a feature file
+
+```gherkin
+@Smoke @NewAccount
+Feature: Account Creation related scenarios
+
+  Scenario Outline: Create a new account
+    Given User opens home page: url
+    When User navigates to create new customer account
+    And User enters auto-generated personal info
+    And User checks the checkbox 'Sign Up for Newsletter'
+    And User enters following sign-in info:
+      | email           |  |
+      | password        |  |
+      | confirmPassword |  |
+    Then User creates an account and verifies the message: "<message>"
+
+    Examples:
+      | message                                            |
+      | Thank you for registering with Main Website Store. |
+```
+All the features being used in this project can be viewed from this folder: [features](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/resources/features)
+For further reference on as to how to write scenarios on Gherkin, you can follow my blog post on [Gherkin](https://medium.com/@5v1988/gherkin-for-qa-a-primer-to-write-scenarios-part-a-729ffb4a6212) on medium
 
 # Step 1: Create a custom module and an injector source
 
@@ -149,5 +179,69 @@ I intend to use a new browser instance for each scenario in the suite.
 
 Putting all these providers together, this is the view of `FrameworkModule` class: [FrameworkModule](https://github.com/5v1988/bdd-cucumber-tests/blob/master/src/test/java/glue/injector/FrameworkModule.java)
 
+# Step 6: Create pages with required elements and methods:
 
+There are several page classes that we may have to create in reality, however for the sake of simplicity,
+let's consider this class `ReviewAndPaymentsPage` that is implemented for Review & Payments page in 
+our test app. If you notice that this class is scenario scoped, as mentioned previously, here we are
+instantiating a page object, keeping it throughout the scenario, and discarding it once the scenario
+is done, irrespective of the test status.
+
+The next thing to note here is that, we are injecting `WebDriver` object in the page constructor 
+parameter which is required to initialize the page elements using PageFactory design.
+
+Lastly, we declared a page element `placeOrderBtn` and implemented a method `placeOrder` which is to
+click and place an order.
+
+The same pattern can be followed while implementing other pages on the testing app.
+
+```java
+@ScenarioScoped
+public class ReviewAndPaymentsPage extends BasePage {
+
+  @Inject
+  public ReviewAndPaymentsPage(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
+  }
+  
+  @FindBy(how = How.CSS, using = "button[title='Place Order']")
+  private WebElement placeOrderBtn;
+
+  public void placeOrder() {
+    waitUntil(placeOrderBtn);
+    pause(Duration.ofSeconds(3));
+    placeOrderBtn.click();
+  }
+
+}
+```
+
+For the testing [app](https://magento.softwaretestingboard.com/), I used for this workshop, all the 
+pages are defined within this package here:[pages](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/java/pages)
+
+# Step 7: Define glue codes for the steps in feature files:
+
+This is simple step definition class that contains an implementation for a step `User reviews payments and places order`. 
+Since it's required `ReviewAndPaymentsPage` object to place an order, we inject it using `Guice` through
+the module we defined on the first step. This way, we are allowed to inject other objects like Faker,
+TestContext, TestConfig etc. in similar way.
+
+```java
+public class ReviewAndPaymentsSteps {
+
+  @Inject
+  ReviewAndPaymentsPage reviewAndPaymentsPage;
+
+  @Then("User reviews payments and places order")
+  public void userReviewsPaymentsAndPlacesOrder() {
+    reviewAndPaymentsPage.placeOrder();
+  }
+  
+}
+```
+Likewise, all the glue codes are defined within this package here:[glue](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/java/glue)
+
+Godspeed!
+Veera.
 

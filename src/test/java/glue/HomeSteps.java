@@ -2,7 +2,6 @@ package glue;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import java.util.Map;
 import javax.inject.Inject;
 import model.TestConfig;
 import model.TestContext;

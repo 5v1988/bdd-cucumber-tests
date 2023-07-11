@@ -1,11 +1,9 @@
 package glue;
 
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import javax.inject.Inject;
 import org.assertj.core.api.Assertions;
 import pages.OrderConfirmationPage;
-import pages.SignInPage;
 
 public class OrderConfirmationSteps {
 

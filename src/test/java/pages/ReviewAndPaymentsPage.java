@@ -18,12 +18,6 @@ public class ReviewAndPaymentsPage extends BasePage {
     PageFactory.initElements(driver, this);
   }
 
-  @FindBy(how = How.CSS, using = "#discount-code")
-  private WebElement discountCode;
-
-  @FindBy(how = How.CSS, using = "button[value='Apply Discount']")
-  private WebElement applyDiscountCode;
-
   @FindBy(how = How.CSS, using = "button[title='Place Order']")
   private WebElement placeOrderBtn;
 
