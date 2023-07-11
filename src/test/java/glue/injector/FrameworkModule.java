@@ -8,8 +8,6 @@ import com.google.inject.Singleton;
 import io.cucumber.guice.ScenarioScoped;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import model.TestConfig;
 import model.TestContext;
