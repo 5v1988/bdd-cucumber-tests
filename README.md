@@ -46,7 +46,7 @@ The following are two scenarios that we automate, mainly to understand the afore
 - Create a new account
 - Search products and place an order
 
-#Step 0: Define scenarios to be automated in bdd format
+# Step 0: Define scenarios to be automated in bdd format
 
 Let's begin by writing steps for above two scenarios in Gherkin format. We need them as we use these
 to learn the concepts required in building a robust and scalable automation framework. For instance,
