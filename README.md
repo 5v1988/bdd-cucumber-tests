@@ -1,8 +1,14 @@
 # bdd-cucumber-tests
 
+**Introduction**
+
+This workshop intends to provide guidance on building test automation framework, mainly using Guice,
+a dependency injection framework.It should take from 1 to 2 hours, depending on how deep you want to
+go into each topic.
+
 **Set-up Outline**
 
-- [Step 1: **Set up a module & injector source**] : Create a custom module and injector classes that 
+- [Step 1: **Set up a module & injector source**](#step-1-create-a-custom-module-and-an-injector-source) : Create a custom module and injector classes that 
 provide and inject objects where required respectively.
 
 - [Step 2: **Add a configuration provider**] : Add a method in the module class to provide test 
@@ -37,6 +43,7 @@ The following are two scenarios that we automate, mainly to understand the afore
 - Create a new account
 - Search products and place an order
 
+# Step 1: Create a custom module and an injector source
 
 ```java
 import com.google.inject.AbstractModule;
