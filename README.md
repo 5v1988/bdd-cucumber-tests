@@ -1,4 +1,4 @@
-# bdd cucumber tests workshop
+# bdd cucumber jvm workshop
 
 **Introduction**
 
@@ -17,16 +17,16 @@ provide and inject objects where required respectively.
 - [Step 2: **Add a configuration provider**](#step-2-create-a-method-that-provides-test-configurations) : Add a method in the module class to provide test 
   configurations
 
-- [Step 3: **Add a method to provide test context**](#step-3-create-a-method-that-provides-testcontext) : Create a method inside the module class to 
+- [Step 3: **Define a provider method for TestContext**](#step-3-create-a-method-that-provides-testcontext) : Create a method inside the module class to 
   provide text context container
 
 - [Step 4: **Add a method to provide randomly generated data**](#step-4-create-a-provider-that-returns-a-standard-faker-object) :  Create a method that provides 
   randomly generated data to be used in the tests
 
-- [Step 5: **Add a method to provide a WebDriver instance**](#step-5-create-a-provider-that-returns-a-webdriver) : Add a method that provides a webdriver
+- [Step 5: **Create a WebDriver instance provider**](#step-5-create-a-provider-that-returns-a-webdriver) : Add a method that provides a webdriver
   instance for the given browser type
 
-- [Step 6: **Add page class and inject WebDriver instance**](#step-6-create-pages-with-required-elements-and-methods) : Create a page class by injecting 
+- [Step 6: **Implement page class and inject WebDriver instance**](#step-6-create-pages-with-required-elements-and-methods) : Create a page class by injecting 
   driver instance with a PageFactory design pattern
 
 - [Step 7: **Create step definition class and inject required dependencies**](#step-7-define-glue-codes-for-the-steps-in-feature-files) : Define steps in the 
@@ -47,6 +47,7 @@ The following are two scenarios that we automate, mainly to understand the afore
 - Search products and place an order
 
 #Step 0: Define scenarios to be automated in bdd format
+
 Let's begin by writing steps for above two scenarios in Gherkin format. We need them as we use these
 to learn the concepts required in building a robust and scalable automation framework. For instance,
 the following steps are to be created for the first scenario: `Create a new account` in a feature file
@@ -143,7 +144,7 @@ is be recreated for every scenario.
 
 In this, one of the providers in `FrameworkModule` returns `Faker` object which will be injected into
 the class, preferably in the step definition classes where we need randomly generated data, which
-will be used in tests. Faker object will be in `@Singleton` scope. 
+will be used in our tests. Faker object will be in `@Singleton` scope. 
 
 ```java
   @Provides
@@ -240,7 +241,7 @@ public class ReviewAndPaymentsSteps {
   
 }
 ```
-Likewise, all the glue codes are defined within this package here:[glue](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/java/glue)
+Likewise, all the glue codes are defined within this package here: [glue](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/java/glue)
 
 Godspeed!
 Veera.
