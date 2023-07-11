@@ -6,7 +6,7 @@ This workshop intends to provide guidance on building test automation framework,
 a dependency injection framework from Google. It should take from 1 to 2 hours, depending on how deep you want to
 go into each topic.
 
-**Set-up Outline**
+**Workshop Outline**
 
 - [Step 0: **Define scenarios to be automated in Gherkin**](#step-0-define-scenarios-to-be-automated-in-bdd-format) : Create a couple of scenarios that
   are used to explain the concepts.
@@ -46,7 +46,7 @@ The following are two scenarios that we automate, mainly to understand the afore
 - Create a new account
 - Search products and place an order
 
-# Step 0: Define scenarios to be automated in bdd format
+## Step 0: Define scenarios to be automated in BDD format
 
 Let's begin by writing steps for above two scenarios in Gherkin format. We need them as we use these
 to learn the concepts required in building a robust and scalable automation framework. For instance,
@@ -74,7 +74,7 @@ Feature: Account Creation related scenarios
 All the features being used in this project can be viewed from this folder: [features](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/resources/features)
 For further reference on as to how to write scenarios on Gherkin, you can follow my blog post on [Gherkin](https://medium.com/@5v1988/gherkin-for-qa-a-primer-to-write-scenarios-part-a-729ffb4a6212) on medium
 
-# Step 1: Create a custom module and an injector source
+## Step 1: Create a custom module and an injector source
 
 Firstly, create a class that extends Guice's AbstractModule, where in we define methods that provide
 all necessary objects while injecting in step definition classes, and also page classes.
@@ -106,7 +106,7 @@ public class CucumberInjectorSource implements InjectorSource {
 ```
 [CucumberInjectorSource](https://github.com/5v1988/bdd-cucumber-tests/blob/master/src/test/java/glue/injector/CucumberInjectorSource.java)
 
-# Step 2: Create a method that provides test configurations
+## Step 2: Create a method that provides test configurations
 
 Now that module is defined , let's begin by adding a provider within a module that create and 
 returns an object to hold all test configuration like application url, browser to be used etc. This
@@ -125,7 +125,7 @@ which is `@Singleton`, meaning we will use the same singleton object throughout 
   }
 ```
 
-# Step 3: Create a method that provides TestContext
+## Step 3: Create a method that provides TestContext
 
 In this step, we are just adding another provider `TestContext` which is plainly to share states
 between steps within the same class and between the step definition classes. It stores values using
@@ -140,7 +140,7 @@ is be recreated for every scenario.
   }
 
 ```
-# Step 4: Create a provider that returns a standard Faker object
+## Step 4: Create a provider that returns a standard Faker object
 
 In this, one of the providers in `FrameworkModule` returns `Faker` object which will be injected into
 the class, preferably in the step definition classes where we need randomly generated data, which
@@ -154,7 +154,7 @@ will be used in our tests. Faker object will be in `@Singleton` scope.
   }
 ```
 
-# Step 5: Create a provider that returns a WebDriver
+## Step 5: Create a provider that returns a WebDriver
 
 This is a provider that returns `WebDriver` instance, for a given browser type. It's also worth to 
 note that we also inject `TestConfig` object in the parameter,created in the previous step that takes
@@ -180,7 +180,7 @@ I intend to use a new browser instance for each scenario in the suite.
 
 Putting all these providers together, this is the view of `FrameworkModule` class: [FrameworkModule](https://github.com/5v1988/bdd-cucumber-tests/blob/master/src/test/java/glue/injector/FrameworkModule.java)
 
-# Step 6: Create pages with required elements and methods:
+## Step 6: Create pages with required elements and methods:
 
 There are several page classes that we may have to create in reality, however for the sake of simplicity,
 let's consider this class `ReviewAndPaymentsPage` that is implemented for Review & Payments page in 
@@ -221,7 +221,7 @@ public class ReviewAndPaymentsPage extends BasePage {
 For the testing [app](https://magento.softwaretestingboard.com/), I used for this workshop, all the 
 pages are defined within this package here:[pages](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/java/pages)
 
-# Step 7: Define glue codes for the steps in feature files:
+## Step 7: Define glue codes for the steps in feature files:
 
 This is simple step definition class that contains an implementation for a step `User reviews payments and places order`. 
 Since it's required `ReviewAndPaymentsPage` object to place an order, we inject it using `Guice` through
@@ -244,5 +244,6 @@ public class ReviewAndPaymentsSteps {
 Likewise, all the glue codes are defined within this package here: [glue](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/java/glue)
 
 Godspeed!
+
 Veera.
 
