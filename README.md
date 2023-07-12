@@ -40,6 +40,8 @@ provide and inject objects where required respectively.
 
 [Cucumber](https://cucumber.io/docs/installation/java/)
 
+[Guice](https://github.com/google/guice)
+
 **Scenarios**
 
 The following are two scenarios that we automate, mainly to understand the aforementioned steps
