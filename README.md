@@ -1,4 +1,4 @@
-# BDD Cucumber JVM Workshop
+# BDD CucumberJVM Workshop
 
 **Introduction**
 
@@ -34,7 +34,7 @@ provide and inject objects where required respectively.
 
 **Requirements**
 
-[Java](https://www.java.com/en/) 
+[Java](https://www.java.com/en/) + [Gradle](https://gradle.org/install/)
 
 [Selenium](https://www.selenium.dev/)
 
@@ -104,7 +104,6 @@ public class CucumberInjectorSource implements InjectorSource {
   }
 }
 ```
-[CucumberInjectorSource](https://github.com/5v1988/bdd-cucumber-tests/blob/master/src/test/java/glue/injector/CucumberInjectorSource.java)
 
 ## Step 2: Create a method that provides test configurations
 
