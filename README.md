@@ -1,4 +1,4 @@
-# bdd cucumber jvm workshop
+# BDD Cucumber JVM Workshop
 
 **Introduction**
 
