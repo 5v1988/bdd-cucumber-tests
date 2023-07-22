@@ -1,6 +1,7 @@
 package pages;
 
 import io.cucumber.guice.ScenarioScoped;
+import java.util.List;
 import javax.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 @ScenarioScoped
-public class CreateNewAccountPage extends BasePage{
+public class CreateNewAccountPage extends BasePage {
 
   @Inject
   public CreateNewAccountPage(WebDriver driver) {
@@ -24,7 +25,7 @@ public class CreateNewAccountPage extends BasePage{
   private WebElement lastName;
 
   @FindBy(how = How.CSS, using = "#is_subscribed")
-  private WebElement isSubscribed;
+  private List<WebElement> isSubscribed;
 
   @FindBy(how = How.CSS, using = "#email_address")
   private WebElement email;
@@ -44,19 +45,19 @@ public class CreateNewAccountPage extends BasePage{
   }
 
   public void signUpNewsletter(String subscribe) {
-    boolean state = isSubscribed.isSelected();
+    boolean state = isSubscribed.size() > 0 ? isSubscribed.get(0).isSelected() : true;
     if (subscribe.equalsIgnoreCase("checks") && !state) {
-      isSubscribed.click();
+      isSubscribed.get(0).click();
     }
   }
 
-  public void enterSignInInfo(String email,String password,String confirmPassword) {
+  public void enterSignInInfo(String email, String password, String confirmPassword) {
     this.email.sendKeys(email);
     this.password.sendKeys(password);
     this.confirmPassword.sendKeys(confirmPassword);
   }
 
-  public void createAnAccount(){
+  public void createAnAccount() {
     createAnAccount.click();
   }
 }

@@ -24,5 +24,8 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.24.2'
     implementation 'com.github.javafaker:javafaker:1.0.2'
     implementation 'org.yaml:snakeyaml:1.33'
+}
 
+test {
+    systemProperties System.properties
 }

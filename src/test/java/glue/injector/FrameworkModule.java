@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 import io.cucumber.guice.ScenarioScoped;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 import model.TestConfig;
 import model.TestContext;
@@ -51,7 +52,9 @@ public final class FrameworkModule extends AbstractModule {
   @ScenarioScoped
   @Inject
   WebDriver providesBrowserInstance(TestConfig testConfig) throws Exception {
-    String browser = Optional.ofNullable(testConfig.getBrowser()).get();
+    String browser = Optional.ofNullable(
+        !Objects.isNull(System.getProperty("browser")) ? System.getProperty("browser")
+            : testConfig.getBrowser()).get();
     switch (browser) {
       case "firefox":
         return new FirefoxDriver(new FirefoxOptions());
@@ -59,10 +62,10 @@ public final class FrameworkModule extends AbstractModule {
         return new EdgeDriver(EdgeDriverService.createDefaultService());
       case "remote-chrome":
         ChromeOptions chromeOptions = new ChromeOptions();
-        return new RemoteWebDriver(new URL("http://127.0.0.1:4444"), chromeOptions);
+        return new RemoteWebDriver(new URL(testConfig.getGridUrl()), chromeOptions);
       case "remote-firefox":
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        return new RemoteWebDriver(new URL("http://127.0.0.1:4444"), firefoxOptions);
+        return new RemoteWebDriver(new URL(testConfig.getGridUrl()), firefoxOptions);
       default:
         return new ChromeDriver(ChromeDriverService.createDefaultService());
     }

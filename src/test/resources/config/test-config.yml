@@ -1,2 +1,3 @@
 url: https://magento.softwaretestingboard.com/
 browser: firefox
+gridUrl: http://127.0.0.1:4444
