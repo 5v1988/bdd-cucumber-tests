@@ -70,6 +70,7 @@ public final class FrameworkModule extends AbstractModule {
         chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--headless");
         return new ChromeDriver(ChromeDriverService.createDefaultService(), chromeOptions);
     }
   }
