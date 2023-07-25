@@ -37,7 +37,6 @@ public final class FrameworkModule extends AbstractModule {
     return new TestContext<>();
   }
 
-
   @Provides
   @Singleton
   TestConfig providesTestConfiguration() {
@@ -52,6 +51,7 @@ public final class FrameworkModule extends AbstractModule {
   @ScenarioScoped
   @Inject
   WebDriver providesBrowserInstance(TestConfig testConfig) throws Exception {
+    ChromeOptions chromeOptions;
     String browser = Optional.ofNullable(
         !Objects.isNull(System.getProperty("browser")) ? System.getProperty("browser")
             : testConfig.getBrowser()).get();
@@ -61,13 +61,16 @@ public final class FrameworkModule extends AbstractModule {
       case "edge":
         return new EdgeDriver(EdgeDriverService.createDefaultService());
       case "remote-chrome":
-        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions = new ChromeOptions();
         return new RemoteWebDriver(new URL(testConfig.getGridUrl()), chromeOptions);
       case "remote-firefox":
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         return new RemoteWebDriver(new URL(testConfig.getGridUrl()), firefoxOptions);
       default:
-        return new ChromeDriver(ChromeDriverService.createDefaultService());
+        chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-dev-shm-usage");
+        chromeOptions.addArguments("--no-sandbox");
+        return new ChromeDriver(ChromeDriverService.createDefaultService(), chromeOptions);
     }
   }
 
