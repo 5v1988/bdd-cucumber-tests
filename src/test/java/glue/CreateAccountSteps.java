@@ -9,8 +9,9 @@ import java.util.Optional;
 import model.TestContext;
 import org.assertj.core.api.Assertions;
 import pages.CreateNewAccountPage;
+import util.RetryUtilityStep;
 
-public class CreateAccountSteps {
+public class CreateAccountSteps implements RetryUtilityStep {
 
   @Inject
   private CreateNewAccountPage createNewAccountPage;
@@ -51,8 +52,14 @@ public class CreateAccountSteps {
 
   @Then("User creates an account and verifies the message: {string}")
   public void userCreatesAnAccountAndVerifiesTheMessage(String alertText) {
-    createNewAccountPage.createAnAccount();
-    Assertions.assertThat(createNewAccountPage.IsAlertMessageDisplayed(alertText))
+    boolean IsAlertMessageDisplayed = (boolean) getWithRetryStep(() -> {
+          createNewAccountPage.createAnAccount();
+          return createNewAccountPage.IsAlertMessageDisplayed(alertText);
+        },
+        MAX_RETRIES_DEFAULT,
+        MAX_DELAY_SECONDS_DEFAULT
+    );
+    Assertions.assertThat(IsAlertMessageDisplayed)
         .as("Assert that alert is displayed")
         .isTrue();
   }

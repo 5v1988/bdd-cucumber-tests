@@ -5,9 +5,13 @@ import io.cucumber.java.en.When;
 import javax.inject.Inject;
 import model.TestConfig;
 import model.TestContext;
+import org.apache.log4j.Logger;
 import pages.HomePage;
+import util.RetryUtilityStep;
 
-public class HomeSteps {
+public class HomeSteps implements RetryUtilityStep {
+
+  public static Logger log = Logger.getLogger(HomeSteps.class);
 
   @Inject
   private HomePage homePage;
@@ -20,16 +24,21 @@ public class HomeSteps {
 
   @Given("User opens home page: url")
   public void userOpensHomePage() {
+    log.info(sf("attempting to open the url %s", testConfig.getUrl()));
     homePage.openUrl(testConfig.getUrl());
   }
 
   @When("User navigates to sign-in page")
   public void userNavigatesToSignInPage() {
-    homePage.navigateToSignInPage();
-  };
+    retryStep(() -> homePage.navigateToSignInPage(),
+        MAX_RETRIES_DEFAULT,
+        MAX_DELAY_SECONDS_DEFAULT);
+  }
 
   @When("User navigates to create new customer account")
   public void userNavigatesToCreateNewCustomerAccount() {
-    homePage.navigateToNewAccountPage();
+    retryStep(() -> homePage.navigateToNewAccountPage(),
+        MAX_RETRIES_DEFAULT,
+        MAX_DELAY_SECONDS_DEFAULT);
   }
 }

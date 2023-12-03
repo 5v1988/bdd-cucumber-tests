@@ -14,7 +14,6 @@ import model.TestConfig;
 import model.TestContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
@@ -70,8 +69,7 @@ public final class FrameworkModule extends AbstractModule {
         chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--no-sandbox");
-        chromeOptions.addArguments("--headless");
-        return new ChromeDriver(ChromeDriverService.createDefaultService(), chromeOptions);
+        return new ChromeDriver(chromeOptions);
     }
   }
 

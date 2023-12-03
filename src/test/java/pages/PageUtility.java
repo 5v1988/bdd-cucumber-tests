@@ -20,7 +20,7 @@ public abstract class PageUtility {
 
   public void pause(Duration seconds) {
     try { Thread.sleep(seconds.toMillis());}
-    catch (InterruptedException ie) {
+    catch (InterruptedException ignored) {
     }
   }
 
@@ -62,4 +62,9 @@ public abstract class PageUtility {
     WebDriverWait wait = new WebDriverWait(driver, timeOut);
     return wait.until((driver) -> element.getText().trim().length() > 0);
   }
+
+  public void pageReloads(){
+    driver.navigate().refresh();
+  }
+
 }
