@@ -42,8 +42,7 @@ public final class FrameworkModule extends AbstractModule {
     Yaml yaml = new Yaml();
     InputStream inputStream = this.getClass().getClassLoader()
         .getResourceAsStream("config/test-config.yml");
-    TestConfig testConfig = yaml.loadAs(inputStream, TestConfig.class);
-    return testConfig;
+      return yaml.loadAs(inputStream, TestConfig.class);
   }
 
   @Provides

@@ -3,12 +3,12 @@ package glue;
 import com.google.inject.Inject;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class BaseSteps {
-  private Logger log = LoggerFactory.getLogger(BaseSteps.class);
+  private final Logger log = Logger.getLogger(BaseSteps.class);
   @Inject
   WebDriver driver;
 

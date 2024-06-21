@@ -29,9 +29,8 @@ public class SearchProductPage extends BasePage {
   private List<WebElement> productElements;
 
   public List<String> getAllProductName() {
-    List<String> products = productElements.stream().map(WebElement::getText)
+      return productElements.stream().map(WebElement::getText)
         .collect(Collectors.toList());
-    return products;
   }
 
   public void chooseProduct(String productName){

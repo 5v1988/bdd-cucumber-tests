@@ -21,7 +21,6 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.24.2'
     testImplementation 'io.cucumber:cucumber-guice:7.12.1'
     testImplementation 'com.google.inject:guice:6.0.0'
-    testImplementation 'org.assertj:assertj-core:3.24.2'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'org.yaml:snakeyaml:1.33'
     implementation 'dev.failsafe:failsafe:3.3.2'
