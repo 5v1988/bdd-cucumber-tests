@@ -32,7 +32,7 @@ provide and inject objects where required respectively.
 - [Step 7: **Create step definition class and inject required dependencies**](#step-7-define-glue-codes-for-the-steps-in-feature-files) : Define steps in the 
   glue codes, and inject all required dependencies
 
-- [Step 8: **Create a simple run configuration**](#step-8-create-a-simple-run-configuration) : Although there are various ways to run these tests, let's run
+- [Step 8: **Run tests with a simple configuration**](#step-8-run-tests-with-a-simple-configuration) : Although there are various ways to run these tests, let's run
   using a standard gradle command to run tests (Junit test runner)
 
 **Requirements**
@@ -248,7 +248,7 @@ public class ReviewAndPaymentsSteps {
 
 Likewise, all the glue codes are defined within this package here: [glue](https://github.com/5v1988/bdd-cucumber-tests/tree/master/src/test/java/glue)
 
-## Step 8: Create a simple run configuration:
+## Step 8: Run tests with a simple configuration:
 
 ```
  gradle test -Dcucumber.filter.tags="@NewAccount"
