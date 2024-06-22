@@ -1,3 +1,7 @@
 url: https://magento.softwaretestingboard.com/
 browser: chrome
 gridUrl: http://127.0.0.1:4444
+apiBaseUri: https://dev-f5bv0e-api.3trunks.com
+grantType: client_credentials
+clientId:
+clientSecret:

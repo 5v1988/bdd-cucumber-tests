@@ -22,7 +22,8 @@ public interface RetryUtilityStep extends Formatters {
   List<Class<? extends Throwable>> exceptionsList = Arrays.asList(
       NoSuchElementException.class,
       ElementClickInterceptedException.class,
-      StaleElementReferenceException.class
+      StaleElementReferenceException.class,
+      AssertionError.class
   );
 
   default void retryStep(CheckedRunnable runnable, int maxRetry, int delaySeconds) {

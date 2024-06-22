@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 public class BaseSteps {
   private final Logger log = Logger.getLogger(BaseSteps.class);
   @Inject
-  WebDriver driver;
+  protected WebDriver driver;
 
   @Before
   public void beforeTest() {

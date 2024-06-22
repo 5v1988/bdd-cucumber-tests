@@ -1,5 +1,6 @@
 package glue.injector;
 
+import clients.TestApiClient;
 import com.github.javafaker.Faker;
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
@@ -43,6 +44,13 @@ public final class FrameworkModule extends AbstractModule {
     InputStream inputStream = this.getClass().getClassLoader()
         .getResourceAsStream("config/test-config.yml");
       return yaml.loadAs(inputStream, TestConfig.class);
+  }
+
+  @Provides
+  @ScenarioScoped
+  @Inject
+  TestApiClient providesTestApiClient(TestConfig testConfig) {
+    return new TestApiClient(testConfig.getApiBaseUri());
   }
 
   @Provides
