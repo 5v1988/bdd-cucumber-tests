@@ -30,20 +30,19 @@ public abstract class PageUtility {
             .executeScript("return document.readyState").equals("complete"));
   }
 
-  boolean waitUntil(By locator, Duration timeOut) {
-    WebDriverWait wait = new WebDriverWait(driver, timeOut);
-    return wait.until((driver) -> driver.findElements(locator).size() > 0);
+  boolean waitUntil(By locator) {
+    WebDriverWait wait = new WebDriverWait(driver, PageUtility.DEFAULT_TIME_OUT);
+    return wait.until((driver) -> !driver.findElements(locator).isEmpty());
   }
 
   boolean waitUntil(List<WebElement> elements) {
     WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIME_OUT);
-    return wait.until(ExpectedConditions.visibilityOfAllElements(elements))
-        .size() > 0;
+    return !wait.until(ExpectedConditions.visibilityOfAllElements(elements)).isEmpty();
   }
 
   boolean waitUntil(List<WebElement> elements, Duration timeOut) {
     WebDriverWait wait = new WebDriverWait(driver, timeOut);
-    return wait.until((driver) -> elements.size() > 0);
+    return wait.until((driver) -> !elements.isEmpty());
   }
 
   boolean waitUntil(WebElement element, Duration timeOut) {

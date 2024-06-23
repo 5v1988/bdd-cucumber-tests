@@ -18,7 +18,7 @@ public class BasePage extends PageUtility {
   }
 
   public boolean IsAlertMessageDisplayed(String message) {
-    return waitUntil(By.xpath(String.format(ALERT_ELEMENT_XPATH, message)), DEFAULT_TIME_OUT);
+    return waitUntil(By.xpath(String.format(ALERT_ELEMENT_XPATH, message)));
   }
 
 }

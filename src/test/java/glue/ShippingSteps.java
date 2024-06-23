@@ -14,7 +14,6 @@ public class ShippingSteps {
 
   @Inject
   private ShippingPage shippingPage;
-
   @Inject
   Faker faker;
 

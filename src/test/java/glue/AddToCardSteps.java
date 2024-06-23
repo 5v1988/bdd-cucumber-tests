@@ -4,7 +4,7 @@ import io.cucumber.java.en.When;
 import javax.inject.Inject;
 import pages.AddToCartPage;
 
-public class AddToCardSteps {
+public class AddToCardSteps extends StepHelpers {
 
   @Inject
   private AddToCartPage addToCartPage;

@@ -22,6 +22,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.yaml.snakeyaml.Yaml;
+import util.TestType;
 
 public final class FrameworkModule extends AbstractModule {
 
@@ -43,7 +44,7 @@ public final class FrameworkModule extends AbstractModule {
     Yaml yaml = new Yaml();
     InputStream inputStream = this.getClass().getClassLoader()
         .getResourceAsStream("config/test-config.yml");
-      return yaml.loadAs(inputStream, TestConfig.class);
+    return yaml.loadAs(inputStream, TestConfig.class);
   }
 
   @Provides
@@ -57,6 +58,9 @@ public final class FrameworkModule extends AbstractModule {
   @ScenarioScoped
   @Inject
   WebDriver providesBrowserInstance(TestConfig testConfig) throws Exception {
+    if (testConfig.getTestType().equals(TestType.API_ONLY.toString())) {
+      return null;
+    }
     ChromeOptions chromeOptions;
     String browser = Optional.ofNullable(
         !Objects.isNull(System.getProperty("browser")) ? System.getProperty("browser")
@@ -79,7 +83,6 @@ public final class FrameworkModule extends AbstractModule {
         return new ChromeDriver(chromeOptions);
     }
   }
-
 }
 
 

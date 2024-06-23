@@ -11,7 +11,7 @@ import org.assertj.core.api.Assertions;
 import pages.CreateNewAccountPage;
 import util.RetryUtilityStep;
 
-public class CreateAccountSteps implements RetryUtilityStep {
+public class CreateAccountSteps extends StepHelpers implements RetryUtilityStep {
 
   @Inject
   private CreateNewAccountPage createNewAccountPage;
