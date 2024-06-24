@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import io.cucumber.java.en.Then;
 import pages.ReviewAndPaymentsPage;
 
-public class ReviewAndPaymentsSteps {
+public class ReviewAndPaymentsSteps extends StepHelpers {
 
   @Inject
   ReviewAndPaymentsPage reviewAndPaymentsPage;

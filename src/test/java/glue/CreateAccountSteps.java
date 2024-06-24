@@ -6,10 +6,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.Map;
 import java.util.Optional;
-import model.TestContext;
+import enabler.TestContext;
 import org.assertj.core.api.Assertions;
 import pages.CreateNewAccountPage;
-import util.RetryUtilityStep;
+import enabler.RetryUtilityStep;
 
 public class CreateAccountSteps extends StepHelpers implements RetryUtilityStep {
 

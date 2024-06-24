@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
     plugin = {"pretty", "html:build/cucumber-report.html"},
-    tags = "@Beneficiary",
+    tags = "@NewAccount",
     snippets = SnippetType.CAMELCASE,
     glue = {"glue"},
     features = {"src/test/resources"}

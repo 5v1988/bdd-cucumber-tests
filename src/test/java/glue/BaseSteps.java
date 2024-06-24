@@ -1,17 +1,12 @@
 package glue;
 
-import com.google.inject.Inject;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 
-
-public class BaseSteps {
+public class BaseSteps extends StepHelpers {
 
   private final Logger log = Logger.getLogger(BaseSteps.class);
-  @Inject
-  protected WebDriver driver;
 
   @Before
   public void beforeTest() {
@@ -23,6 +18,5 @@ public class BaseSteps {
     driver.quit();
     log.info("Tests are finished running!");
   }
-
 
 }

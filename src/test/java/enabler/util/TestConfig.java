@@ -1,4 +1,4 @@
-package model;
+package enabler.util;
 
 import lombok.*;
 
@@ -8,10 +8,10 @@ import lombok.*;
 @Getter
 @Setter
 public class TestConfig {
+  private String platName; //web, android, iOS, api
+  private String automationName; //chrome, edge, uiautomator2, flutter, firefox
   private String url;
-  private String browser;
   private String gridUrl;
-  private String testType;
   private String apiBaseUri;
   private String grantType;
   private String clientId;

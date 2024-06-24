@@ -3,12 +3,15 @@ package glue;
 import clients.TestApiClient;
 import com.github.javafaker.Faker;
 import com.google.inject.Inject;
-import model.TestConfig;
-import model.TestContext;
-import util.Formatters;
-import util.Mappers;
+import enabler.util.TestConfig;
+import enabler.TestContext;
+import enabler.util.Formatters;
+import enabler.Mappers;
+import org.openqa.selenium.WebDriver;
 
 public class StepHelpers implements Mappers, Formatters {
+    @Inject
+    protected WebDriver driver;
     @Inject
     protected TestApiClient testApiClient;
     @Inject

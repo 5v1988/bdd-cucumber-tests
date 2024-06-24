@@ -5,11 +5,11 @@ import io.cucumber.java.en.When;
 
 import javax.inject.Inject;
 
-import model.TestConfig;
-import model.TestContext;
+import enabler.util.TestConfig;
+import enabler.TestContext;
 import org.apache.log4j.Logger;
 import pages.HomePage;
-import util.RetryUtilityStep;
+import enabler.RetryUtilityStep;
 
 public class HomeSteps extends StepHelpers implements RetryUtilityStep {
 

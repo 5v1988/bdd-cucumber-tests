@@ -1,6 +1,7 @@
-package glue;
+package glue.api;
 
 import clients.PathIdentifier;
+import glue.StepHelpers;
 import io.cucumber.java.en.Given;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

@@ -4,7 +4,7 @@ import io.cucumber.java.en.When;
 import javax.inject.Inject;
 import pages.SignInPage;
 
-public class SignInSteps {
+public class SignInSteps extends StepHelpers {
 
   @Inject
   private SignInPage signInPage;

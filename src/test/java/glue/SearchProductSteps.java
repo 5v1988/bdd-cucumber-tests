@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions;
 import pages.HomePage;
 import pages.SearchProductPage;
 
-public class SearchProductSteps {
+public class SearchProductSteps extends StepHelpers {
 
   @Inject
   HomePage homePage;

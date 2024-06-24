@@ -1,6 +1,7 @@
-package glue;
+package glue.api;
 
 import clients.PathIdentifier;
+import glue.StepHelpers;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;

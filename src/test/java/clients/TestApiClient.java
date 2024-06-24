@@ -3,7 +3,7 @@ package clients;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
-import util.Formatters;
+import enabler.util.Formatters;
 
 public class TestApiClient implements Formatters {
 

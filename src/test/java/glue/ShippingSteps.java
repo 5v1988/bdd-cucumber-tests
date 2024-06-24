@@ -10,12 +10,10 @@ import java.util.Optional;
 import javax.inject.Inject;
 import pages.ShippingPage;
 
-public class ShippingSteps {
+public class ShippingSteps extends StepHelpers{
 
   @Inject
   private ShippingPage shippingPage;
-  @Inject
-  Faker faker;
 
   @When("User enters the following personal shipping info:")
   public void userEntersTheFollowingPersonalShippingInfo(Map<String, String> shippingInfo) {
