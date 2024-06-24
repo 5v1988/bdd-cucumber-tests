@@ -56,7 +56,7 @@ public final class FrameworkModule extends AbstractModule {
     String platName = Optional.ofNullable(
         !Objects.isNull(System.getProperty("platName")) ? System.getProperty("platName")
             : testConfig.getPlatName()).get();
-    if (PlatformName.WEB == PlatformName.fromString(platName)) {
+    if (PlatformName.DESKTOP == PlatformName.fromString(platName)) {
       String automationName = Optional.ofNullable(
           !Objects.isNull(System.getProperty("automationName")) ? System.getProperty(
               "automationName")

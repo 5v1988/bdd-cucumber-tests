@@ -3,7 +3,7 @@ package enabler.util;
 import enabler.exception.TestRuntimeException;
 
 public enum PlatformName {
-  WEB("web"),
+  DESKTOP("desktop"),
   ANDROID("android"),
   IOS("iOS"),
   API_ONLY("apiOnly");
