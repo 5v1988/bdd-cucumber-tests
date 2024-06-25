@@ -3,6 +3,7 @@ package pages;
 import io.cucumber.guice.ScenarioScoped;
 import java.util.List;
 import javax.inject.Inject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 
 @ScenarioScoped
 public class CreateNewAccountPage extends SimpleWebPage {
+
+  private final static String ALERT_ELEMENT_XPATH = "//div[@role='alert'][.//div[contains(normalize-space(),'%s')]]";
 
   @Inject
   public CreateNewAccountPage(WebDriver driver) {
@@ -59,5 +62,9 @@ public class CreateNewAccountPage extends SimpleWebPage {
 
   public void createAnAccount() {
     createAnAccount.click();
+  }
+
+  public boolean IsAlertMessageDisplayed(String message) {
+    return waitUntil(By.xpath(String.format(ALERT_ELEMENT_XPATH, message)));
   }
 }

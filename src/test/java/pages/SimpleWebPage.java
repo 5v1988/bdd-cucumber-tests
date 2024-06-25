@@ -4,16 +4,16 @@ import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SimpleWebPage extends AbstractUiScreen {
-  private final static String ALERT_ELEMENT_XPATH = "//div[@role='alert'][.//div[contains(normalize-space(),'%s')]]";
   public SimpleWebPage() {
 
   }
+
   @Override
   public void waitUntilPageLoad() {
     new WebDriverWait(driver, DEFAULT_TIME_OUT)
@@ -33,14 +33,20 @@ public class SimpleWebPage extends AbstractUiScreen {
 
   @Override
   public void openUrl(String url) {
-    System.out.println(driver);
-    System.out.println("driver");
     driver.get(url);
   }
 
   @Override
   public void reloads() {
     driver.navigate().refresh();
+    pause(2);
+  }
+
+  @Override
+  public void moveAndClick(WebElement el) {
+    final Actions actions = new Actions(driver);
+    actions.moveToElement(el).pause(Duration.ofMillis(250))
+        .click().build().perform();
   }
 
   @Override
@@ -67,10 +73,6 @@ public class SimpleWebPage extends AbstractUiScreen {
   boolean waitUntil(List<WebElement> elements) {
     WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIME_OUT);
     return !wait.until(ExpectedConditions.visibilityOfAllElements(elements)).isEmpty();
-  }
-
-  public boolean IsAlertMessageDisplayed(String message) {
-    return waitUntil(By.xpath(String.format(ALERT_ELEMENT_XPATH, message)));
   }
 
 }

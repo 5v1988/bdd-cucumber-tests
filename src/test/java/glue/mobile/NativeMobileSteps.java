@@ -10,12 +10,12 @@ import org.apache.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import pages.mobileScreen.ListViewScreen;
 
-public class MobileSampleSteps extends StepHelpers implements RetryUtilityStep {
+public class NativeMobileSteps extends StepHelpers implements RetryUtilityStep {
 
   @Inject
   private ListViewScreen mobileList;
 
-  public static Logger log = Logger.getLogger(MobileSampleSteps.class);
+  public static Logger log = Logger.getLogger(NativeMobileSteps.class);
 
   @Given("Mobile User taps 'Views' on the list")
   public void mobileUserTapsViewsOnTheList() {

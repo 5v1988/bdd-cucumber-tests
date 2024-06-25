@@ -22,23 +22,25 @@ public abstract class AbstractUiScreen {
 
   abstract public void reloads();
 
-  abstract public String getText(WebElement element);
+  abstract public void moveAndClick(WebElement el);
 
-  abstract public void scrollToView(WebElement element);
+  abstract public String getText(WebElement el);
+
+  abstract public void scrollToView(WebElement el);
 
   abstract public void waitUntilPageLoad();
 
   abstract boolean waitUntil(By locator);
 
-  abstract boolean waitUntil(WebElement element);
+  abstract boolean waitUntil(WebElement el);
 
-  abstract boolean waitUntil(WebElement element, Duration timeOut);
+  abstract boolean waitUntil(WebElement el, Duration timeOut);
 
-  abstract boolean waitUntil(List<WebElement> elements);
+  abstract boolean waitUntil(List<WebElement> el);
 
-  boolean waitUntilText(WebElement element, Duration timeOut) {
+  boolean waitUntilText(WebElement el, Duration timeOut) {
     WebDriverWait wait = new WebDriverWait(driver, timeOut);
-    return wait.until((driver) -> !element.getText().trim().isEmpty());
+    return wait.until((driver) -> !el.getText().trim().isEmpty());
   }
 
 }

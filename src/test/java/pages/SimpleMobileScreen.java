@@ -34,6 +34,11 @@ public class SimpleMobileScreen extends AbstractUiScreen {
   }
 
   @Override
+  public void moveAndClick(WebElement el) {
+
+  }
+
+  @Override
   public String getText(WebElement element) {
     return element.getText();
   }
