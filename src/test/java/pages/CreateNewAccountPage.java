@@ -10,11 +10,11 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 @ScenarioScoped
-public class CreateNewAccountPage extends BasePage {
+public class CreateNewAccountPage extends SimpleWebPage {
 
   @Inject
   public CreateNewAccountPage(WebDriver driver) {
-    super(driver);
+    this.driver = driver;
     PageFactory.initElements(driver, this);
   }
 

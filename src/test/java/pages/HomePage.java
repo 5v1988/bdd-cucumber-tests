@@ -10,11 +10,11 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 @ScenarioScoped
-public class HomePage extends BasePage {
+public class HomePage extends SimpleWebPage {
 
   @Inject
   public HomePage(WebDriver driver) {
-    super(driver);
+    this.driver = driver;
     PageFactory.initElements(driver, this);
   }
 

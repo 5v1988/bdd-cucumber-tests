@@ -8,10 +8,14 @@ import lombok.*;
 @Getter
 @Setter
 public class TestConfig {
-  private String platName; //web, android, iOS, api
-  private String automationName; //chrome, edge, uiautomator2, flutter, firefox
+  private String targetName; //web, mobile, apiOnly
+  private String platformName; //android, iOS
+  private String automationName; // uiautomator2, flutter
+  private String browserName; //chrome, edge, firefox
   private String url;
   private String gridUrl;
+  private String appiumUrl;
+  private String app;
   private String apiBaseUri;
   private String grantType;
   private String clientId;

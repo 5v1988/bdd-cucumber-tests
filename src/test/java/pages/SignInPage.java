@@ -9,11 +9,11 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 @ScenarioScoped
-public class SignInPage extends BasePage {
+public class SignInPage extends SimpleWebPage {
 
   @Inject
   public SignInPage(WebDriver driver) {
-    super(driver);
+    this.driver = driver;
     PageFactory.initElements(driver, this);
   }
 

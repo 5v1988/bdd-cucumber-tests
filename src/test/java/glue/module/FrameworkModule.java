@@ -7,14 +7,13 @@ import com.google.inject.Inject;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import enabler.TestContext;
+import enabler.driver.MobileDriverFactory;
 import enabler.driver.WebDriverFactory;
-import enabler.util.AutomationName;
 import enabler.util.TestConfig;
-import enabler.util.PlatformName;
+import enabler.util.config.TargetName;
 import io.cucumber.guice.ScenarioScoped;
 import java.io.InputStream;
 import java.util.Objects;
-import java.util.Optional;
 import org.openqa.selenium.WebDriver;
 import org.yaml.snakeyaml.Yaml;
 
@@ -53,16 +52,16 @@ public final class FrameworkModule extends AbstractModule {
   @Inject
   WebDriver providesBrowserInstance(TestConfig testConfig) {
     WebDriver driver = null;
-    String platName = Optional.ofNullable(
-        !Objects.isNull(System.getProperty("platName")) ? System.getProperty("platName")
-            : testConfig.getPlatName()).get();
-    if (PlatformName.DESKTOP == PlatformName.fromString(platName)) {
-      String automationName = Optional.ofNullable(
-          !Objects.isNull(System.getProperty("automationName")) ? System.getProperty(
-              "automationName")
-              : testConfig.getAutomationName()).get();
-      driver = new WebDriverFactory()
-          .getWebDriver(AutomationName.fromString(automationName));
+    String targetName =
+        !Objects.isNull(System.getProperty("targetName")) ? System.getProperty("targetName")
+            : testConfig.getTargetName();
+    if (TargetName.WEB == TargetName.fromString(targetName)) {
+      if (!Objects.isNull(System.getProperty("browserName"))) {
+        testConfig.setBrowserName(System.getProperty("browserName"));
+      }
+      driver = new WebDriverFactory().getWebDriver(testConfig);
+    } else if (TargetName.MOBILE == TargetName.fromString(targetName)) {
+      driver = new MobileDriverFactory().getWebDriver(testConfig);
     }
     return driver;
   }
