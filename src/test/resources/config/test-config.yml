@@ -1,13 +1,21 @@
-targetName: web #mobile, web, apiOnly
+targetName: mobile #mobile, web, apiOnly
 platformName: android #android, iOS
 automationName: uiautomator2 #driver like uiautomator2, flutter, xcuitest
-browserName: chrome #edge, firefox
-url: https://magento.softwaretestingboard.com/
-#browser: chrome
-gridUrl: http://127.0.0.1:4444
+web:
+  browserName: firefox #edge, firefox, chrome
+  url: https://magento.softwaretestingboard.com/
+  gridUrl: http://127.0.0.1:4444
+android:
+  app: /Users/veera/dev-space/bdd-cucumber-tests/src/test/resources/apps/android-app.apk
+  appPackage: com.swaglabsmobileapp
+  appActivity: com.swaglabsmobileapp.SplashActivity
+ios:
+  app: /Users/veera/dev-space/bdd-cucumber-tests/src/test/resources/apps/ios-simulator.zip
+  deviceName: iPhone 14 Pro
+  udid: E9DA7C05-396E-4868-91A4-2AE1005C4185
+api:
+  baseUri: https://dev-f5bv0e-api.3trunks.com
+  grantType: client_credentials
+  clientId:
+  clientSecret:
 appiumUrl: http://127.0.0.1:4723/
-app: /Users/veera/dev-space/bdd-cucumber-tests/src/test/resources/ApiDemos-debug.apk
-apiBaseUri: https://dev-f5bv0e-api.3trunks.com
-grantType: client_credentials
-clientId:
-clientSecret:

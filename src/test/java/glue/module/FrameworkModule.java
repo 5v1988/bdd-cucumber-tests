@@ -44,7 +44,7 @@ public final class FrameworkModule extends AbstractModule {
   @ScenarioScoped
   @Inject
   TestApiClient providesTestApiClient(TestConfig testConfig) {
-    return new TestApiClient(testConfig.getApiBaseUri());
+    return new TestApiClient(testConfig.getApi().getBaseUri());
   }
 
   @Provides
@@ -57,7 +57,7 @@ public final class FrameworkModule extends AbstractModule {
             : testConfig.getTargetName();
     if (TargetName.WEB == TargetName.fromString(targetName)) {
       if (!Objects.isNull(System.getProperty("browserName"))) {
-        testConfig.setBrowserName(System.getProperty("browserName"));
+        testConfig.getWeb().setBrowserName(System.getProperty("browserName"));
       }
       driver = new WebDriverFactory().getWebDriver(testConfig);
     } else if (TargetName.MOBILE == TargetName.fromString(targetName)) {

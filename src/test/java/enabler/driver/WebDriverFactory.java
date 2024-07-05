@@ -16,7 +16,7 @@ public class WebDriverFactory extends DriverFactory {
 
   @Override
   public WebDriver getWebDriver(TestConfig config) {
-    BrowserName browserName = BrowserName.fromString(config.getBrowserName());
+    BrowserName browserName = BrowserName.fromString(config.getWeb().getBrowserName());
     try {
       switch (browserName) {
         case CHROME:

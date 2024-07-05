@@ -9,6 +9,7 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Objects;
 import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
@@ -23,21 +24,38 @@ public class MobileDriverFactory extends DriverFactory {
         case UIAUTOMATOR2:
           UiAutomator2Options ui2Opts = new UiAutomator2Options();
           ui2Opts.setPlatformName(config.getPlatformName())
-              .setAutomationName(config.getAutomationName());
-          if (Objects.nonNull(config.getBrowserName())) {
-            ui2Opts.withBrowserName(config.getBrowserName());
+              .setAutomationName(config.getAutomationName())
+              .setAppWaitDuration(Duration.ofSeconds(30));
+          if (Objects.nonNull(config.getAndroid().getAppPackage())) {
+            ui2Opts.setAppPackage(config.getAndroid().getAppPackage());
+          }
+          if (Objects.nonNull(config.getAndroid().getAppActivity())) {
+            ui2Opts.setAppActivity(config.getAndroid().getAppActivity());
+          }
+          if (Objects.nonNull(config.getAndroid().getBrowser())) {
+            ui2Opts.withBrowserName(config.getAndroid().getBrowser());
           } else {
-            ui2Opts.setApp(config.getApp());
+            ui2Opts.setApp(config.getAndroid().getApp());
           }
           return new AndroidDriver(new URL(config.getAppiumUrl()), ui2Opts);
         case XCUITEST:
           XCUITestOptions xcuiOpts = new XCUITestOptions();
           xcuiOpts.setPlatformName(config.getPlatformName())
-              .setAutomationName(config.getAutomationName());
-          if (Objects.nonNull(config.getBrowserName())) {
-            xcuiOpts.withBrowserName(config.getBrowserName());
+              .setAutomationName(config.getAutomationName())
+              .setUsePrebuiltWda(true)
+              .setIncludeSafariInWebviews(true)
+              .setConnectHardwareKeyboard(true)
+              .setNewCommandTimeout(Duration.ofSeconds(3600));
+          if (Objects.nonNull(config.getIos().getUdid())) {
+            xcuiOpts.setUdid(config.getIos().getUdid());
+          }
+          if (Objects.nonNull(config.getIos().getDeviceName())) {
+            xcuiOpts.setDeviceName(config.getIos().getDeviceName());
+          }
+          if (Objects.nonNull(config.getIos().getBrowser())) {
+            xcuiOpts.withBrowserName(config.getIos().getBrowser());
           } else {
-            xcuiOpts.setApp(config.getApp());
+            xcuiOpts.setApp(config.getIos().getApp());
           }
           return new IOSDriver(xcuiOpts);
         default:

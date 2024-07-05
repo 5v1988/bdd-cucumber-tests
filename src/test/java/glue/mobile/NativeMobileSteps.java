@@ -9,11 +9,19 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import pages.mobileScreen.ListViewScreen;
+import pages.mobileScreen.SwagLabHomeScreen;
+import pages.mobileScreen.SwagLabLoginScreen;
 
 public class NativeMobileSteps extends StepHelpers implements RetryUtilityStep {
 
   @Inject
   private ListViewScreen mobileList;
+
+  @Inject
+  private SwagLabLoginScreen loginScreen;
+
+  @Inject
+  private SwagLabHomeScreen homeScreen;
 
   public static Logger log = Logger.getLogger(NativeMobileSteps.class);
 
@@ -44,4 +52,14 @@ public class NativeMobileSteps extends StepHelpers implements RetryUtilityStep {
         .isEqualTo(text);
   }
 
+  @Given("Mobile User logons using username: {string} and password: {string}")
+  public void mobileUserLogonsUsingUsernameAndPassword(String username, String password) {
+    loginScreen.login(username, password);
+  }
+
+  @Given("Mobile User verifies that home screen is displayed")
+  public void mobileUserVerifiesThatHomeScreenIsDisplayed() {
+    Assertions.assertThat(homeScreen.isHomeDisplayed())
+        .isTrue();
+  }
 }

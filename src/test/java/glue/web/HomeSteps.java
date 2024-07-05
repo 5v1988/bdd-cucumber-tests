@@ -17,8 +17,8 @@ public class HomeSteps extends StepHelpers implements RetryUtilityStep {
 
   @Given("User opens home page: url")
   public void userOpensHomePage() {
-    log.info(sf("attempting to open the url %s", testConfig.getUrl()));
-    homePage.openUrl(testConfig.getUrl());
+    log.info(sf("attempting to open the url %s", testConfig.getWeb().getUrl()));
+    homePage.openUrl(testConfig.getWeb().getUrl());
   }
 
   @When("User navigates to sign-in page")

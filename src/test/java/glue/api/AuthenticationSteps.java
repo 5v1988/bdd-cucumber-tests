@@ -16,9 +16,9 @@ public class AuthenticationSteps extends StepHelpers {
   public void apiUserGetAndSetAccessToken() {
     RequestSpecification spec = RestAssured.given().accept(ContentType.JSON)
         .contentType(ContentType.URLENC)
-        .formParam("grant_type", testConfig.getGrantType())
-        .formParam("client_id", testConfig.getClientId())
-        .formParam("client_secret", testConfig.getClientSecret());
+        .formParam("grant_type", testConfig.getApi().getGrantType())
+        .formParam("client_id", testConfig.getApi().getClientId())
+        .formParam("client_secret", testConfig.getApi().getClientSecret());
     Response r = testApiClient.doPost("authenticate", PathIdentifier.ACCESS_TOKEN, spec);
     Assertions.assertThat(r.statusCode()).
         as("Assert that status code is '200'")
