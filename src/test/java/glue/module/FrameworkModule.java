@@ -9,10 +9,14 @@ import com.google.inject.Singleton;
 import enabler.TestContext;
 import enabler.driver.MobileDriverFactory;
 import enabler.driver.WebDriverFactory;
+import enabler.exception.TestRuntimeException;
 import enabler.util.TestConfig;
 import enabler.util.config.TargetName;
 import io.cucumber.guice.ScenarioScoped;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 import org.openqa.selenium.WebDriver;
 import org.yaml.snakeyaml.Yaml;
@@ -33,11 +37,13 @@ public final class FrameworkModule extends AbstractModule {
 
   @Provides
   @Singleton
-  TestConfig providesTestConfiguration() {
+  TestConfig providesTestConfiguration() throws IOException {
     Yaml yaml = new Yaml();
-    InputStream inputStream = this.getClass().getClassLoader()
-        .getResourceAsStream("config/test-config.yml");
-    return yaml.loadAs(inputStream, TestConfig.class);
+    try (InputStream inputStream = Files.newInputStream(Paths.get(".", "test-config.yml"))) {
+      return yaml.loadAs(inputStream, TestConfig.class);
+    } catch (IOException io) {
+      throw new TestRuntimeException("Error reading test configuration", io);
+    }
   }
 
   @Provides

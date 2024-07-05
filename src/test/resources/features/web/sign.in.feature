@@ -1,4 +1,4 @@
-@SignIn
+@Web @SignIn
 Feature: Sign In scenarios
 
   Scenario Outline: Login using valid creds

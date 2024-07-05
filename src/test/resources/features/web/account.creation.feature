@@ -1,4 +1,4 @@
-@NewAccount
+@Web @NewAccount
 Feature: Account Creation related scenarios
 
   Scenario Outline: Create a new account

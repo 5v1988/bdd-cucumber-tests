@@ -1,4 +1,4 @@
-@Beneficiary
+@Api @Beneficiary
 Feature: Beneficiary service related scenarios
 
   @CreateBeneficiary

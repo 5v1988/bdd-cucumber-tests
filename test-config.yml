@@ -1,4 +1,4 @@
-targetName: mobile #mobile, web, apiOnly
+targetName: web #mobile, web, apiOnly
 platformName: android #android, iOS
 automationName: uiautomator2 #driver like uiautomator2, flutter, xcuitest
 web:
@@ -9,10 +9,12 @@ android:
   app: /Users/veera/dev-space/bdd-cucumber-tests/src/test/resources/apps/android-app.apk
   appPackage: com.swaglabsmobileapp
   appActivity: com.swaglabsmobileapp.SplashActivity
+  browser:
 ios:
   app: /Users/veera/dev-space/bdd-cucumber-tests/src/test/resources/apps/ios-simulator.zip
   deviceName: iPhone 14 Pro
   udid: E9DA7C05-396E-4868-91A4-2AE1005C4185
+  browser:
 api:
   baseUri: https://dev-f5bv0e-api.3trunks.com
   grantType: client_credentials
