@@ -56,7 +56,7 @@ public final class FrameworkModule extends AbstractModule {
   @Provides
   @ScenarioScoped
   @Inject
-  WebDriver providesBrowserInstance(TestConfig testConfig) {
+  WebDriver providesDriverInstance(TestConfig testConfig) {
     WebDriver driver = null;
     String targetName =
         !Objects.isNull(System.getProperty("targetName")) ? System.getProperty("targetName")
